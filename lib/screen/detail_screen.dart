@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
-  final Color color;
+  final String wordSetTitle;
 
   const DetailScreen({
-    required this.color,
+    required this.wordSetTitle,
     super.key,
   });
 
@@ -22,7 +22,7 @@ class DetailScreen extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: const Text('영어단어 100개'),
+        title: Text(wordSetTitle),
         actions: [
           TextButton(
             onPressed: () {
