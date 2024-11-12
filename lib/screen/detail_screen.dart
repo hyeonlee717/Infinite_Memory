@@ -29,7 +29,7 @@ class DetailScreen extends StatelessWidget {
             itemBuilder: (context) => [
               PopupMenuItem(
                 child: const Align(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.center,
                   child: Text(
                     '추가 및 수정',
                     style: TextStyle(fontSize: 16),
@@ -39,7 +39,7 @@ class DetailScreen extends StatelessWidget {
               ),
               PopupMenuItem(
                 child: const Align(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.center,
                   child: Text(
                     '나가기',
                     style: TextStyle(fontSize: 16),
