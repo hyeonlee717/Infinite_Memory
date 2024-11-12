@@ -25,10 +25,12 @@ class DetailScreen extends StatelessWidget {
         title: Text(wordSetTitle),
         actions: [
           TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('종료'),
+            onPressed: () {},
+            child: const Icon(
+              Icons.settings,
+              size: 30,
+              color: Colors.black,
+            ),
           ),
         ],
       ),

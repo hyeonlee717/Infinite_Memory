@@ -10,7 +10,7 @@ void main() async {
   Hive.registerAdapter(WordSetAdapter());
 
   // 모든 박스 삭제 (개발 중에만 사용, 실제 배포 시 제거)
-  await Hive.deleteBoxFromDisk('wordSets');
+  // await Hive.deleteBoxFromDisk('wordSets');
 
   await Hive.openBox<WordSet>('wordSets');
 
