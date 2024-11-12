@@ -99,44 +99,131 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: ListView.builder(
+        padding: const EdgeInsets.only(top: 12),
         itemCount: wordSetBox.length,
         itemBuilder: (context, index) {
           final wordSet = wordSetBox.getAt(index);
           if (wordSet == null) {
             return const SizedBox.shrink();
           }
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(
-                    wordSet: wordSet,
-                    wordSetTitle: wordSet.title,
-                  ),
+          return Dismissible(
+            key: Key(wordSet.title),
+            direction: DismissDirection.startToEnd,
+            onDismissed: (direction) {},
+            background: Container(
+              color: Colors.red,
+              alignment: Alignment.centerLeft,
+              child: const Padding(
+                padding: EdgeInsets.only(left: 16),
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                  size: 30,
                 ),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey, // 원하는 색상 지정
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                width: double.infinity,
-                height: 150,
-                child: Center(
-                  child: Text(
-                    wordSet.title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
+              ),
+            ),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailScreen(
+                      wordSet: wordSet,
+                      wordSetTitle: wordSet.title,
                     ),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  width: double.infinity,
+                  height: 120,
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Text(
+                          wordSet.title,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        left: 0,
+                        bottom: 0,
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.keyboard_double_arrow_left_sharp,
+                                color: Colors.white70,
+                                size: 10,
+                              ),
+                              Text(
+                                'Delete',
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
+            confirmDismiss: (direction) async {
+              return await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    contentPadding: const EdgeInsets.all(40),
+                    content: const Text(
+                      '이 단어장을 삭제하시겠습니까?',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false); // 취소
+                        },
+                        child: const Text(
+                          '아니오',
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          wordSetBox.deleteAt(index); // 삭제
+                          Navigator.of(context).pop(true); // 확인
+                        },
+                        child: const Text(
+                          '예',
+                          style: TextStyle(
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           );
         },
       ),
