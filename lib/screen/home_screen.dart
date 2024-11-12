@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import '../models/word_set.dart';
 import 'detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,11 +12,25 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<String> wordSets = [];
+  late Box<WordSet> wordSetBox;
+
+  @override
+  void initState() {
+    super.initState();
+    wordSetBox = Hive.box<WordSet>('wordSets');
+
+    // 기존 데이터 삭제 (개발 중에만 사용)
+    wordSetBox.clear();
+  }
 
   void _addWordSet(String title) {
-    setState(() {
-      wordSets.add(title);
-    });
+    final newWordSet = WordSet(
+      title: title,
+      repeatCount: 0,
+      words: [],
+    );
+    wordSetBox.add(newWordSet);
+    setState(() {});
   }
 
   void _showAddWordSetDialog() {
@@ -81,15 +97,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: ListView.builder(
-        itemCount: wordSets.length,
+        itemCount: wordSetBox.length,
         itemBuilder: (context, index) {
+          final wordSet = wordSetBox.getAt(index);
+          if (wordSet == null) {
+            return const SizedBox.shrink();
+          }
           return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      DetailScreen(wordSetTitle: wordSets[index]),
+                      DetailScreen(wordSetTitle: wordSet.title),
                 ),
               );
             },
@@ -104,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 150,
                 child: Center(
                   child: Text(
-                    wordSets[index],
+                    wordSet.title,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
