@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import '../models/word_set.dart';
 
-class WordListScreen extends StatelessWidget {
+class WordListScreen extends StatefulWidget {
   final WordSet wordSet;
 
   const WordListScreen({required this.wordSet, super.key});
 
+  @override
+  State<WordListScreen> createState() => _WordListScreenState();
+}
+
+class _WordListScreenState extends State<WordListScreen> {
   void _showAddWordDialog(BuildContext context) {
     final TextEditingController englishController = TextEditingController();
     final TextEditingController meaningController = TextEditingController();
@@ -39,13 +44,17 @@ class WordListScreen extends StatelessWidget {
               onPressed: () {
                 if (englishController.text.isNotEmpty &&
                     meaningController.text.isNotEmpty) {
-                  wordSet.addWord(
-                    Word(
-                      english: englishController.text,
-                      label: wordSet.words.length + 1,
-                      meaning: meaningController.text,
-                      memorized: false,
-                    ),
+                  setState(
+                    () {
+                      widget.wordSet.addWord(
+                        Word(
+                          english: englishController.text,
+                          label: widget.wordSet.words.length + 1,
+                          meaning: meaningController.text,
+                          memorized: false,
+                        ),
+                      );
+                    },
                   );
                   Navigator.of(context).pop();
                 }
@@ -147,7 +156,7 @@ class WordListScreen extends StatelessWidget {
               ],
             ),
             // 데이터 행
-            for (var word in wordSet.words)
+            for (var word in widget.wordSet.words)
               TableRow(
                 children: [
                   TableCell(
