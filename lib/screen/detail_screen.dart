@@ -31,7 +31,7 @@ class DetailScreen extends StatelessWidget {
                 child: const Align(
                   alignment: Alignment.center,
                   child: Text(
-                    '추가 및 수정',
+                    '단어 목록',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
