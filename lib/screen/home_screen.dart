@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     wordSetBox = Hive.box<WordSet>('wordSets');
+    setState(() {});
 
     // 기존 데이터 삭제 (개발 중에만 사용)
     // wordSetBox.clear();

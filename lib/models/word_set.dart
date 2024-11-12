@@ -21,6 +21,7 @@ class WordSet extends HiveObject {
 
   void addWord(Word word) {
     words.add(word);
+    save();
   }
 }
 
