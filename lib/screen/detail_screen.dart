@@ -13,8 +13,17 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 1,
+        shadowColor: Colors.black,
         centerTitle: true,
-        title: Text(wordSetTitle),
+        title: Text(
+          wordSetTitle,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
