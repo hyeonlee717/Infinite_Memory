@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     wordSetBox = Hive.box<WordSet>('wordSets');
-    setState(() {});
+    // setState(() {});
 
     // 기존 데이터 삭제 (개발 중에만 사용)
     // wordSetBox.clear();
@@ -102,6 +102,9 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(top: 12),
         itemCount: wordSetBox.length,
         itemBuilder: (context, index) {
+          if (index >= wordSetBox.length) {
+            return const SizedBox.shrink(); // 인덱스가 범위를 벗어나면 빈 위젯 반환
+          }
           final wordSet = wordSetBox.getAt(index);
           if (wordSet == null) {
             return const SizedBox.shrink();
