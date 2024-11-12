@@ -18,6 +18,10 @@ class WordSet extends HiveObject {
     required this.repeatCount,
     required this.words,
   });
+
+  void addWord(Word word) {
+    words.add(word);
+  }
 }
 
 @HiveType(typeId: 1)

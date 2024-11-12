@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'wordlist_screen.dart';
+import '../models/word_set.dart';
 
 class DetailScreen extends StatelessWidget {
   final String wordSetTitle;
+  final WordSet wordSet;
 
   const DetailScreen({
     required this.wordSetTitle,
+    required this.wordSet,
     super.key,
   });
 
@@ -30,7 +33,7 @@ class DetailScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const WordListScreen()));
+                      builder: (context) => WordListScreen(wordSet: wordSet)));
             },
             icon: const Icon(Icons.view_list, size: 30),
           ),
