@@ -80,11 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         elevation: 2,
         shadowColor: Colors.black,
+        centerTitle: true,
         title: const Text(
-          '단어장 목록',
+          'Infinite Memory',
           style: TextStyle(
             color: Colors.black,
             fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
