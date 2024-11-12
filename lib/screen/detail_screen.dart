@@ -24,13 +24,14 @@ class DetailScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(wordSetTitle),
         actions: [
-          TextButton(
-            onPressed: () {},
-            child: const Icon(
-              Icons.settings,
-              size: 30,
-              color: Colors.black,
-            ),
+          PopupMenuButton(
+            icon: const Icon(Icons.settings),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: const Text('설정'),
+                onTap: () {},
+              ),
+            ],
           ),
         ],
       ),
