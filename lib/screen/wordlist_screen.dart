@@ -10,7 +10,12 @@ class WordListScreen extends StatelessWidget {
 
     // 예시 데이터
     final List<Map<String, dynamic>> words = [
-      {'label': 1, 'english': 'apple', 'meaning': '사과', 'memorized': true},
+      {
+        'label': 1,
+        'english': 'appleeeeeeeeeeee',
+        'meaning': '사과',
+        'memorized': true
+      },
       {'label': 2, 'english': 'banana', 'meaning': '바나나', 'memorized': false},
       {'label': 3, 'english': 'cherry', 'meaning': '체리', 'memorized': true},
       {'label': 4, 'english': 'date', 'meaning': '대추야자', 'memorized': false},
@@ -117,13 +122,13 @@ class WordListScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical, // 수직 스크롤만 허용
+        scrollDirection: Axis.vertical,
         child: Table(
-          border: TableBorder.all(color: Colors.black, width: 0.1),
+          border: TableBorder.all(color: Colors.grey, width: 0.5),
           columnWidths: {
             0: FixedColumnWidth(screenWidth * 0.15), // 전체 너비의 10%로 설정
-            1: FixedColumnWidth(screenWidth * 0.3), // 전체 너비의 30%로 설정
-            2: FixedColumnWidth(screenWidth * 0.4), // 전체 너비의 40%로 설정
+            1: FixedColumnWidth(screenWidth * 0.35), // 전체 너비의 30%로 설정
+            2: FixedColumnWidth(screenWidth * 0.35), // 전체 너비의 40%로 설정
             3: FixedColumnWidth(screenWidth * 0.15), // 전체 너비의 20%로 설정
           },
           children: [
@@ -131,25 +136,57 @@ class WordListScreen extends StatelessWidget {
             const TableRow(
               children: [
                 TableCell(
+                  child: Center(
                     child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('라벨',
-                            style: TextStyle(fontWeight: FontWeight.bold)))),
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        '라벨',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 TableCell(
+                  child: Center(
                     child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('영어 단어',
-                            style: TextStyle(fontWeight: FontWeight.bold)))),
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        '영어 단어',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 TableCell(
+                  child: Center(
                     child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('의미',
-                            style: TextStyle(fontWeight: FontWeight.bold)))),
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        '의미',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 TableCell(
+                  child: Center(
                     child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text('완료',
-                            style: TextStyle(fontWeight: FontWeight.bold)))),
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        '완료',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             // 데이터 행
@@ -157,25 +194,49 @@ class WordListScreen extends StatelessWidget {
               TableRow(
                 children: [
                   TableCell(
+                    child: Center(
                       child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(word['label'].toString()))),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          word['label'].toString(),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ),
                   TableCell(
+                    child: Center(
                       child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(word['english']))),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          word['english'],
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ),
                   TableCell(
+                    child: Center(
                       child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(word['meaning']))),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          word['meaning'],
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ),
                   TableCell(
+                    child: Center(
                       child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(
-                              word['memorized'] ? Icons.check : Icons.close,
-                              color: word['memorized']
-                                  ? Colors.green
-                                  : Colors.red))),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                            word['memorized'] ? Icons.check : Icons.close,
+                            color:
+                                word['memorized'] ? Colors.green : Colors.red),
+                      ),
+                    ),
+                  ),
                 ],
               ),
           ],
