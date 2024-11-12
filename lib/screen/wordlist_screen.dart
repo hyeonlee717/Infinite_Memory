@@ -16,6 +16,13 @@ class WordListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('단어 목록'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add, size: 30),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
