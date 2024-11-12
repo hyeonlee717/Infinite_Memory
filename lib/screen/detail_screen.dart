@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'wordlist_screen.dart';
 
 class DetailScreen extends StatelessWidget {
   final String wordSetTitle;
@@ -12,18 +13,16 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back, size: 30),
-        ),
-        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(wordSetTitle),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WordListScreen()));
+            },
             icon: const Icon(Icons.view_list, size: 30),
           ),
         ],
