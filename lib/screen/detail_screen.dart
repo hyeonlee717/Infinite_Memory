@@ -24,30 +24,9 @@ class DetailScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(wordSetTitle),
         actions: [
-          PopupMenuButton(
-            icon: const Icon(Icons.settings),
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                child: const Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '단어 목록',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                onTap: () {},
-              ),
-              PopupMenuItem(
-                child: const Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '나가기',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                onTap: () {},
-              ),
-            ],
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.view_list),
           ),
         ],
       ),
