@@ -12,13 +12,11 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 80,
-        leading: Container(
-          alignment: Alignment.center,
-          child: const Text(
-            '100/100',
-            overflow: TextOverflow.ellipsis,
-          ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back, size: 30),
         ),
         automaticallyImplyLeading: false,
         centerTitle: true,
@@ -26,7 +24,7 @@ class DetailScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.view_list),
+            icon: const Icon(Icons.view_list, size: 30),
           ),
         ],
       ),
