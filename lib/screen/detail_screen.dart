@@ -28,11 +28,23 @@ class DetailScreen extends StatelessWidget {
             icon: const Icon(Icons.settings),
             itemBuilder: (context) => [
               PopupMenuItem(
-                child: const Text('추가 및 수정'),
+                child: const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '추가 및 수정',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
                 onTap: () {},
               ),
               PopupMenuItem(
-                child: const Text('나가기'),
+                child: const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '나가기',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
                 onTap: () {},
               ),
             ],
