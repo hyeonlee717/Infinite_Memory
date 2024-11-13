@@ -107,6 +107,10 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
           actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.change_circle_outlined, size: 30),
+            ),
             const SizedBox(width: 5),
             IconButton(
               onPressed: () {
