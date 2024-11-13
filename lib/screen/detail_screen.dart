@@ -23,6 +23,7 @@ class _DetailScreenState extends State<DetailScreen> {
   Word? currentWord;
   final Random _random = Random();
   bool isShowingMeaning = false; // 단일 상태 변수
+  bool showWord = false; // 단어 표시 상태 변수
   late StreamSubscription<BoxEvent> _subscription;
   List<Word> previouslySelectedWords = [];
 
@@ -69,6 +70,7 @@ class _DetailScreenState extends State<DetailScreen> {
     setState(() {
       currentWord = availableWords[_random.nextInt(availableWords.length)];
       previouslySelectedWords.add(currentWord!); // 선택된 단어 추가
+      showWord = false; // 단어 표시 상태 초기화
     });
   }
 
@@ -84,34 +86,45 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void _showMeaning() {
     setState(() {
-      isShowingMeaning = true;
+      if (isShowingMeaning) {
+        // 이미 의미를 보여주고 있을 때 단어도 함께 표시
+        showWord = true;
+      } else {
+        // 단어 모드에서 의미만 표시
+        isShowingMeaning = true;
+        showWord = false;
+      }
     });
   }
 
   Widget _buildWordDisplay() {
-    return isShowingMeaning
-        ? const SizedBox.shrink() // 의미를 표시할 때 단어는 숨김
-        : Text(
-            currentWord!.english,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          );
+    if (!isShowingMeaning || showWord) {
+      return Text(
+        currentWord!.english,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+    } else {
+      return const SizedBox.shrink(); // 필요 없을 경우 숨김
+    }
   }
 
   Widget _buildMeaningDisplay() {
-    return isShowingMeaning
-        ? Text(
-            currentWord!.meaning,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        : const SizedBox.shrink(); // 단어를 표시할 때 의미는 숨김
+    if (isShowingMeaning) {
+      return Text(
+        currentWord!.meaning,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+    } else {
+      return const SizedBox.shrink(); // 필요 없을 경우 숨김
+    }
   }
 
   @override
