@@ -22,8 +22,8 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   Word? currentWord;
   final Random _random = Random();
-  bool isShowingMeaning = false; // 단일 상태 변수
-  bool showWord = false; // 단어 표시 상태 변수
+  bool isShowingMeaning = false; // 단일 상태 변수: 모드 관리
+  bool showWord = false; // 단어 표시 상태 변수: 정답확인 버튼 관리
   late StreamSubscription<BoxEvent> _subscription;
   List<Word> previouslySelectedWords = [];
 
@@ -86,14 +86,7 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void _showMeaning() {
     setState(() {
-      if (isShowingMeaning) {
-        // 이미 의미를 보여주고 있을 때 단어도 함께 표시
-        showWord = true;
-      } else {
-        // 단어 모드에서 의미만 표시
-        isShowingMeaning = true;
-        showWord = false;
-      }
+      showWord = true; // 단어와 의미를 동시에 표시
     });
   }
 
@@ -113,7 +106,7 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   Widget _buildMeaningDisplay() {
-    if (isShowingMeaning) {
+    if (isShowingMeaning || showWord) {
       return Text(
         currentWord!.meaning,
         style: const TextStyle(
@@ -187,6 +180,7 @@ class _DetailScreenState extends State<DetailScreen> {
             onPressed: () {
               setState(() {
                 isShowingMeaning = !isShowingMeaning; // 상태 토글
+                showWord = false; // 정해진 모드에 따라 단어 표시 상태 초기화
               });
             },
             icon: Icon(
