@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
             direction: DismissDirection.startToEnd,
             onDismissed: (direction) {},
             background: Container(
-              color: Colors.red,
+              color: Colors.redAccent,
               alignment: Alignment.centerLeft,
               child: const Padding(
                 padding: EdgeInsets.only(left: 16),
@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(12.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Colors.indigo[900],
                     borderRadius: BorderRadius.circular(20),
                   ),
                   width: double.infinity,
@@ -158,14 +158,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       const Positioned(
-                        left: 0,
+                        right: 0,
                         bottom: 0,
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               Icon(
-                                Icons.keyboard_double_arrow_left_sharp,
+                                Icons.keyboard_double_arrow_right_outlined,
                                 color: Colors.white70,
                                 size: 10,
                               ),
