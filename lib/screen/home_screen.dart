@@ -148,9 +148,50 @@ class _HomeScreenState extends State<HomeScreen> {
             return const SizedBox.shrink();
           }
           return Dismissible(
-            key: Key(wordSet.title),
+            key: Key(wordSet.key.toString()),
             direction: DismissDirection.startToEnd,
-            onDismissed: (direction) {},
+            confirmDismiss: (direction) async {
+              return await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    contentPadding: const EdgeInsets.all(40),
+                    content: const Text(
+                      '이 단어장을 삭제하시겠습니까?',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false); // 취소
+                        },
+                        child: const Text(
+                          '아니오',
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          wordSetBox.delete(wordSet.key);
+                          Navigator.of(context).pop(true); // 확인
+                        },
+                        child: const Text(
+                          '예',
+                          style: TextStyle(
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
             background: Container(
               color: Colors.redAccent,
               alignment: Alignment.centerLeft,
@@ -223,48 +264,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            confirmDismiss: (direction) async {
-              return await showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    contentPadding: const EdgeInsets.all(40),
-                    content: const Text(
-                      '이 단어장을 삭제하시겠습니까?',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(false); // 취소
-                        },
-                        child: const Text(
-                          '아니오',
-                          style: TextStyle(
-                            color: Colors.blueAccent,
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          wordSetBox.deleteAt(actualIndex);
-                          Navigator.of(context).pop(true); // 확인
-                        },
-                        child: const Text(
-                          '예',
-                          style: TextStyle(
-                            color: Colors.redAccent,
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
           );
         },
       ),
