@@ -160,6 +160,7 @@ class _WordListScreenState extends State<WordListScreen> {
               TableRow(
                 children: [
                   TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -171,6 +172,7 @@ class _WordListScreenState extends State<WordListScreen> {
                     ),
                   ),
                   TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -182,6 +184,7 @@ class _WordListScreenState extends State<WordListScreen> {
                     ),
                   ),
                   TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -193,11 +196,23 @@ class _WordListScreenState extends State<WordListScreen> {
                     ),
                   ),
                   TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
                     child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(word.memorized ? Icons.check : Icons.close,
-                            color: word.memorized ? Colors.green : Colors.red),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            word.memorized = !word.memorized; // 상태 반전
+                            widget.wordSet.save(); // 변경 사항 저장
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(14.0),
+                          child: Icon(
+                            word.memorized ? Icons.check : Icons.close,
+                            color: word.memorized ? Colors.green : Colors.red,
+                            size: 20,
+                          ),
+                        ),
                       ),
                     ),
                   ),

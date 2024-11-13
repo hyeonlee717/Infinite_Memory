@@ -99,8 +99,8 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         body: const Center(
           child: Text(
-            '등록된 단어가 없습니다.',
-            style: TextStyle(fontSize: 18),
+            '외우지 못한 단어가 없습니다.',
+            style: TextStyle(fontSize: 18, color: Colors.grey),
           ),
         ),
       );
