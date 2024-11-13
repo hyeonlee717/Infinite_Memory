@@ -24,12 +24,12 @@ class _DetailScreenState extends State<DetailScreen> {
   final Random _random = Random();
   bool showMeaning = false;
   late StreamSubscription<BoxEvent> _subscription;
+  List<Word> previouslySelectedWords = [];
 
   @override
   void initState() {
     super.initState();
     _loadRandomWord();
-    // WordSet이 저장된 Box를 구독
     final box = Hive.box<WordSet>('wordSets');
     _subscription = box.watch().listen((event) {
       _loadRandomWord();
@@ -43,19 +43,34 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   void _loadRandomWord() {
-    List<Word> availableWords =
+    // 외우지 못한 모든 단어 목록
+    List<Word> notMemorizedWords =
         widget.wordSet.words.where((word) => !word.memorized).toList();
-    if (availableWords.isNotEmpty) {
-      setState(() {
-        currentWord = availableWords[_random.nextInt(availableWords.length)];
-        showMeaning = false; // 의미를 숨김
-      });
-    } else {
-      // 모든 단어가 암기 완료된 경우 처리
+
+    if (notMemorizedWords.isEmpty) {
+      // 모든 단어가 암기 완료된 경우
       setState(() {
         currentWord = null;
       });
+      return;
     }
+
+    // 이전에 선택된 단어를 제외한 단어 목록
+    List<Word> availableWords = notMemorizedWords
+        .where((word) => !previouslySelectedWords.contains(word))
+        .toList();
+
+    if (availableWords.isEmpty) {
+      // 모든 외우지 못한 단어를 한 번씩 보여준 경우 이전 선택 목록 초기화
+      previouslySelectedWords.clear();
+      availableWords = notMemorizedWords;
+    }
+
+    setState(() {
+      currentWord = availableWords[_random.nextInt(availableWords.length)];
+      showMeaning = false; // 의미를 숨김
+      previouslySelectedWords.add(currentWord!); // 선택된 단어 추가
+    });
   }
 
   void _markAsMemorized() {
