@@ -44,7 +44,7 @@ class DetailScreen extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Container(
-                color: Colors.red,
+                color: Colors.redAccent,
                 width: double.infinity,
                 child: const Center(
                   child: Text(
@@ -60,7 +60,7 @@ class DetailScreen extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.blue,
+              color: Colors.blueAccent,
               width: double.infinity,
               child: const Center(
                 child: Text(

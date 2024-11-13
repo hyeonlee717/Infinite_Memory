@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.only(top: 12),
+        padding: const EdgeInsets.only(top: 12, bottom: 36),
         itemCount: wordSetBox.length,
         itemBuilder: (context, index) {
           if (index >= wordSetBox.length) {
