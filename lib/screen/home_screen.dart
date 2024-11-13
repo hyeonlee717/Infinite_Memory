@@ -142,10 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.only(top: 12, bottom: 36),
         itemCount: wordSetBox.length,
         itemBuilder: (context, index) {
-          if (index >= wordSetBox.length) {
-            return const SizedBox.shrink(); // 인덱스가 범위를 벗어나면 빈 위젯 반환
-          }
-          final wordSet = wordSetBox.getAt(index);
+          final actualIndex = wordSetBox.length - 1 - index;
+          final wordSet = wordSetBox.getAt(actualIndex);
           if (wordSet == null) {
             return const SizedBox.shrink();
           }
@@ -252,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          wordSetBox.deleteAt(index); // 삭제
+                          wordSetBox.deleteAt(actualIndex);
                           Navigator.of(context).pop(true); // 확인
                         },
                         child: const Text(
