@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/word_set.dart';
 import 'detail_screen.dart';
-import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,36 +36,75 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _showAddWordSetDialog() {
     final TextEditingController controller = TextEditingController();
+    int byteCount = 0;
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          content: Container(
-            padding: const EdgeInsets.only(top: 30),
-            child: TextField(
-              controller: controller,
-              decoration: const InputDecoration(labelText: '단어장 제목'),
-              inputFormatters: [LengthLimitingTextInputFormatter(48)],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('취소'),
-            ),
-            TextButton(
-              onPressed: () {
-                if (controller.text.isNotEmpty) {
-                  _addWordSet(controller.text);
-                  Navigator.of(context).pop();
-                }
-              },
-              child: const Text('추가'),
-            ),
-          ],
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              content: Container(
+                padding: const EdgeInsets.only(top: 30),
+                child: TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                    labelText: '단어장 제목',
+                    counterText: '$byteCount/24',
+                  ),
+                  maxLength: 24,
+                  onChanged: (text) {
+                    int count = 0;
+                    for (int rune in text.runes) {
+                      if (rune <= 0x7F) {
+                        count += 1; // 영어
+                      } else {
+                        count += 2; // 한글
+                      }
+                    }
+
+                    if (count > 24) {
+                      // 최대 바이트 초과 시
+                      String newText = '';
+                      int currentCount = 0;
+                      for (int rune in text.runes) {
+                        int charCount = (rune <= 0x7F) ? 1 : 2;
+                        if (currentCount + charCount > 24) break;
+                        newText += String.fromCharCode(rune);
+                        currentCount += charCount;
+                      }
+                      controller.text = newText;
+                      controller.selection = TextSelection.fromPosition(
+                        TextPosition(offset: controller.text.length),
+                      );
+                      count = currentCount;
+                    }
+
+                    setState(() {
+                      byteCount = count;
+                    });
+                  },
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('취소'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    if (controller.text.isNotEmpty) {
+                      _addWordSet(controller.text);
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: const Text('추가'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
