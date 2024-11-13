@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/word_set.dart';
 import 'detail_screen.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: TextField(
               controller: controller,
               decoration: const InputDecoration(labelText: '단어장 제목'),
+              inputFormatters: [LengthLimitingTextInputFormatter(48)],
             ),
           ),
           actions: [
