@@ -43,6 +43,6 @@ class Word extends HiveObject {
     required this.english,
     required this.label,
     required this.meaning,
-    required this.memorized,
+    this.memorized = false,
   });
 }

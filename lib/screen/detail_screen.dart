@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'wordlist_screen.dart';
 import '../models/word_set.dart';
 import 'dart:math';
+import 'dart:async';
+import 'package:hive/hive.dart';
 
 class DetailScreen extends StatefulWidget {
   final String wordSetTitle;
@@ -18,14 +20,26 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  late Word currentWord;
+  Word? currentWord;
   final Random _random = Random();
   bool showMeaning = false;
+  late StreamSubscription<BoxEvent> _subscription;
 
   @override
   void initState() {
     super.initState();
     _loadRandomWord();
+    // WordSet이 저장된 Box를 구독
+    final box = Hive.box<WordSet>('wordSets');
+    _subscription = box.watch().listen((event) {
+      _loadRandomWord();
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
   }
 
   void _loadRandomWord() {
@@ -39,23 +53,19 @@ class _DetailScreenState extends State<DetailScreen> {
     } else {
       // 모든 단어가 암기 완료된 경우 처리
       setState(() {
-        currentWord = Word(
-          english: '',
-          label: 0,
-          meaning: '',
-          memorized: false,
-        );
+        currentWord = null;
       });
     }
   }
 
   void _markAsMemorized() {
-    setState(() {
-      currentWord.memorized = true;
-      // 업데이트된 단어를 Hive에 저장
-      widget.wordSet.save();
-      _loadRandomWord(); // 다음 단어 로드
-    });
+    if (currentWord != null) {
+      setState(() {
+        currentWord!.memorized = true;
+        widget.wordSet.save();
+        _loadRandomWord(); // 다음 단어 로드
+      });
+    }
   }
 
   void _showMeaning() {
@@ -67,8 +77,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     // 단어가 없을 경우 표시할 위젯
-    if (widget.wordSet.words.isEmpty ||
-        currentWord.english.isEmpty && currentWord.meaning.isEmpty) {
+    if (currentWord == null) {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -142,7 +151,7 @@ class _DetailScreenState extends State<DetailScreen> {
               width: double.infinity,
               child: Center(
                 child: Text(
-                  currentWord.english,
+                  currentWord!.english,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 40,
@@ -160,7 +169,7 @@ class _DetailScreenState extends State<DetailScreen> {
               child: Center(
                 child: showMeaning
                     ? Text(
-                        currentWord.meaning,
+                        currentWord!.meaning,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -205,16 +214,16 @@ class _DetailScreenState extends State<DetailScreen> {
                 Expanded(
                   flex: 2,
                   child: Material(
-                    color: currentWord.memorized ? Colors.grey : Colors.brown,
+                    color: currentWord!.memorized ? Colors.grey : Colors.brown,
                     child: InkWell(
-                      onTap: currentWord.memorized
+                      onTap: currentWord!.memorized
                           ? null
                           : () {
                               _markAsMemorized();
                             },
                       child: Center(
                         child: Text(
-                          currentWord.memorized ? '암기완료!' : '암기완료 변경',
+                          currentWord!.memorized ? '암기완료!' : '미암기',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
