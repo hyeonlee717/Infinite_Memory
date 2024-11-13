@@ -108,7 +108,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         body: const Center(
           child: Text(
-            '외우지 못한 단어가 없습니다.',
+            '외우지 못한 단어가 더이상 없습니다.',
             style: TextStyle(fontSize: 18, color: Colors.grey),
           ),
         ),
@@ -223,7 +223,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             },
                       child: Center(
                         child: Text(
-                          currentWord!.memorized ? '암기완료!' : '미암기',
+                          currentWord!.memorized ? '암기완료!!' : '암기완료',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
