@@ -22,7 +22,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   Word? currentWord;
   final Random _random = Random();
-  bool showMeaning = false;
+  bool isShowingMeaning = false; // 단일 상태 변수
   late StreamSubscription<BoxEvent> _subscription;
   List<Word> previouslySelectedWords = [];
 
@@ -68,7 +68,6 @@ class _DetailScreenState extends State<DetailScreen> {
 
     setState(() {
       currentWord = availableWords[_random.nextInt(availableWords.length)];
-      showMeaning = false; // 의미를 숨김
       previouslySelectedWords.add(currentWord!); // 선택된 단어 추가
     });
   }
@@ -85,8 +84,34 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void _showMeaning() {
     setState(() {
-      showMeaning = true;
+      isShowingMeaning = true;
     });
+  }
+
+  Widget _buildWordDisplay() {
+    return isShowingMeaning
+        ? const SizedBox.shrink() // 의미를 표시할 때 단어는 숨김
+        : Text(
+            currentWord!.english,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+  }
+
+  Widget _buildMeaningDisplay() {
+    return isShowingMeaning
+        ? Text(
+            currentWord!.meaning,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
+          )
+        : const SizedBox.shrink(); // 단어를 표시할 때 의미는 숨김
   }
 
   @override
@@ -146,8 +171,18 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.change_circle_outlined, size: 30),
+            onPressed: () {
+              setState(() {
+                isShowingMeaning = !isShowingMeaning; // 상태 토글
+              });
+            },
+            icon: Icon(
+              Icons.change_circle_outlined,
+              size: 30,
+              color: isShowingMeaning
+                  ? Colors.blueAccent
+                  : Colors.redAccent, // 상태에 따른 색상 변경
+            ),
           ),
           const SizedBox(width: 5),
           IconButton(
@@ -171,14 +206,7 @@ class _DetailScreenState extends State<DetailScreen> {
               color: Colors.redAccent,
               width: double.infinity,
               child: Center(
-                child: Text(
-                  currentWord!.english,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: _buildWordDisplay(),
               ),
             ),
           ),
@@ -188,23 +216,7 @@ class _DetailScreenState extends State<DetailScreen> {
               color: Colors.blueAccent,
               width: double.infinity,
               child: Center(
-                child: showMeaning
-                    ? Text(
-                        currentWord!.meaning,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    : const Text(
-                        '',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                child: _buildMeaningDisplay(),
               ),
             ),
           ),
