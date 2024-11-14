@@ -155,17 +155,71 @@ class _WordListScreenState extends State<WordListScreen> {
                         child: Text('Delete'),
                       ),
                     ),
+                    const PopupMenuItem(
+                      value: 'reset',
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text('Reset'),
+                      ),
+                    ),
                   ],
                 ).then((value) {
                   if (value == 'add') {
                     _showAddWordDialog(context); // 추가 다이얼로그 호출
                   } else if (value == 'delete') {
                     setState(() {
-                      // 삭제 모드로 전환
                       _isDeletingMode = true; // 삭제 모드 상태 변수 추가
                       _selectedWords = List<bool>.filled(
                           widget.wordSet.words.length, false); // 초기화
                     });
+                  } else if (value == 'reset') {
+                    showDialog(
+                      // 확인 다이얼로그 추가
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          titlePadding:
+                              const EdgeInsets.only(top: 40, bottom: 20),
+                          title: const Center(
+                            child: Text(
+                              'Reset all memorized statuses?',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // 다이얼로그 닫기
+                              },
+                              child: const Text(
+                                'Cancel',
+                                style: TextStyle(color: Colors.blueAccent),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  for (var word in widget.wordSet.words) {
+                                    word.memorized =
+                                        false; // 모든 단어의 memorized를 false로 설정
+                                  }
+                                  widget.wordSet.save(); // 변경 사항 저장
+                                });
+                                Navigator.of(context).pop(); // 다이얼로그 닫기
+                              },
+                              child: const Text(
+                                'Reset',
+                                style: TextStyle(color: Colors.redAccent),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                 });
               },

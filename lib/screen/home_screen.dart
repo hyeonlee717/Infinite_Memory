@@ -166,9 +166,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   return AlertDialog(
                     contentPadding: const EdgeInsets.all(40),
                     content: const Text(
-                      '이 단어장을 삭제하시겠습니까?',
+                      'Delete this wordset?',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -178,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.of(context).pop(false); // 취소
                         },
                         child: const Text(
-                          '아니오',
+                          'No',
                           style: TextStyle(
                             color: Colors.blueAccent,
                           ),
@@ -190,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.of(context).pop(true); // 확인
                         },
                         child: const Text(
-                          '예',
+                          'Yes',
                           style: TextStyle(
                             color: Colors.redAccent,
                           ),
