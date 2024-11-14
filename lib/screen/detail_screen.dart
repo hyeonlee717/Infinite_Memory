@@ -207,10 +207,23 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
       body: Column(
         children: [
+          const Expanded(
+            flex: 2,
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: Text(
+                  '48%            32/87',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
           Expanded(
-            flex: 3,
+            flex: 10,
             child: Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -227,9 +240,10 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 10,
             child: Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -246,7 +260,7 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 6,
             child: Row(
               children: [
                 Expanded(
@@ -264,7 +278,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         borderRadius: BorderRadius.circular(100),
                         child: const Center(
                           child: Padding(
-                            padding: EdgeInsets.all(1.0),
+                            padding: EdgeInsets.all(10.0),
                             child: Text(
                               'Answer',
                               style: TextStyle(
