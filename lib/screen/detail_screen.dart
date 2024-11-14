@@ -120,6 +120,19 @@ class _DetailScreenState extends State<DetailScreen> {
     }
   }
 
+  double _calculateMemorizedPercentage() {
+    if (widget.wordSet.words.isEmpty) return 0; // 단어가 없을 경우 0%
+    int memorizedCount =
+        widget.wordSet.words.where((word) => word.memorized).length; // 암기된 단어 수
+    return (memorizedCount / widget.wordSet.words.length) * 100;
+  }
+
+  int _getMemorizedCount() {
+    return widget.wordSet.words
+        .where((word) => word.memorized)
+        .length; // 암기된 단어 수
+  }
+
   @override
   Widget build(BuildContext context) {
     // 단어가 없을 경우 표시할 위젯
@@ -207,14 +220,15 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
       body: Column(
         children: [
-          const Expanded(
+          Expanded(
             flex: 2,
             child: Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  '48%            32/87',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  '${_calculateMemorizedPercentage().toInt()}%            ${_getMemorizedCount()}/${widget.wordSet.words.length}', // 비율 및 총 단어 수 표시
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
