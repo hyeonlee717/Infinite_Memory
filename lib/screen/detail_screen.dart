@@ -155,7 +155,7 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
         body: const Center(
           child: Text(
-            '외우지 못한 단어가 더이상 없습니다.',
+            'Add a new word to memorize',
             style: TextStyle(fontSize: 18, color: Colors.grey),
           ),
         ),
@@ -241,34 +241,29 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
           Expanded(
             flex: 2,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Material(
-                        color: Colors.green,
-                        shape: const CircleBorder(),
-                        child: InkWell(
-                          onTap: () {
-                            _showMeaning();
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          borderRadius: BorderRadius.circular(100),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(1.0),
-                              child: Text(
-                                'Answer',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Material(
+                      color: Colors.green,
+                      shape: const CircleBorder(),
+                      child: InkWell(
+                        onTap: () {
+                          _showMeaning();
+                        },
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        borderRadius: BorderRadius.circular(100),
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(1.0),
+                            child: Text(
+                              'Answer',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
                               ),
                             ),
                           ),
@@ -276,28 +271,28 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Material(
-                        color: Colors.brown,
-                        shape: const CircleBorder(),
-                        child: InkWell(
-                          onTap: () {
-                            _markAsMemorized();
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          borderRadius: BorderRadius.circular(100),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'Marked!',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Material(
+                      color: Colors.brown,
+                      shape: const CircleBorder(),
+                      child: InkWell(
+                        onTap: () {
+                          _markAsMemorized();
+                        },
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        borderRadius: BorderRadius.circular(100),
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              'Marked!',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
                               ),
                             ),
                           ),
@@ -305,28 +300,28 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Material(
-                        color: Colors.orange,
-                        shape: const CircleBorder(),
-                        child: InkWell(
-                          onTap: () {
-                            _loadRandomWord();
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          borderRadius: BorderRadius.circular(100),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'Next',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Material(
+                      color: Colors.orange,
+                      shape: const CircleBorder(),
+                      child: InkWell(
+                        onTap: () {
+                          _loadRandomWord();
+                        },
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        borderRadius: BorderRadius.circular(100),
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              'Next',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
                               ),
                             ),
                           ),
@@ -334,8 +329,8 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
