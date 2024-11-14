@@ -44,54 +44,60 @@ class _HomeScreenState extends State<HomeScreen> {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              content: Container(
-                padding: const EdgeInsets.only(top: 30),
-                child: TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
-                    labelText: 'Wordset Title',
-                    counterText: '$byteCount/24',
-                  ),
-                  maxLength: 24,
-                  onChanged: (text) {
-                    int count = 0;
-                    for (int rune in text.runes) {
-                      if (rune <= 0x7F) {
-                        count += 1; // 영어
-                      } else {
-                        count += 2; // 한글
-                      }
-                    }
-
-                    if (count > 24) {
-                      // 최대 바이트 초과 시
-                      String newText = '';
-                      int currentCount = 0;
-                      for (int rune in text.runes) {
-                        int charCount = (rune <= 0x7F) ? 1 : 2;
-                        if (currentCount + charCount > 24) break;
-                        newText += String.fromCharCode(rune);
-                        currentCount += charCount;
-                      }
-                      controller.text = newText;
-                      controller.selection = TextSelection.fromPosition(
-                        TextPosition(offset: controller.text.length),
-                      );
-                      count = currentCount;
-                    }
-
-                    setState(() {
-                      byteCount = count;
-                    });
-                  },
+              title: const Center(
+                child: Text(
+                  'Add a new wordset',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+              ),
+              content: TextField(
+                controller: controller,
+                decoration: InputDecoration(
+                  labelText: 'Wordset Title',
+                  counterText: '$byteCount/24',
+                ),
+                maxLength: 24,
+                onChanged: (text) {
+                  int count = 0;
+                  for (int rune in text.runes) {
+                    if (rune <= 0x7F) {
+                      count += 1; // 영어
+                    } else {
+                      count += 2; // 한글
+                    }
+                  }
+
+                  if (count > 24) {
+                    // 최대 바이트 초과 시
+                    String newText = '';
+                    int currentCount = 0;
+                    for (int rune in text.runes) {
+                      int charCount = (rune <= 0x7F) ? 1 : 2;
+                      if (currentCount + charCount > 24) break;
+                      newText += String.fromCharCode(rune);
+                      currentCount += charCount;
+                    }
+                    controller.text = newText;
+                    controller.selection = TextSelection.fromPosition(
+                      TextPosition(offset: controller.text.length),
+                    );
+                    count = currentCount;
+                  }
+
+                  setState(() {
+                    byteCount = count;
+                  });
+                },
               ),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text('Cancel'),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.blueAccent),
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
@@ -100,7 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.of(context).pop();
                     }
                   },
-                  child: const Text('Add'),
+                  child: const Text(
+                    'Add',
+                    style: TextStyle(color: Colors.redAccent),
+                  ),
                 ),
               ],
             );

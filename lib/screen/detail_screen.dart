@@ -217,8 +217,11 @@ class _DetailScreenState extends State<DetailScreen> {
                   borderRadius: BorderRadius.circular(40),
                   color: Colors.redAccent,
                 ),
-                child: Center(
-                  child: _buildWordDisplay(),
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Center(
+                    child: _buildWordDisplay(),
+                  ),
                 ),
               ),
             ),
@@ -233,8 +236,11 @@ class _DetailScreenState extends State<DetailScreen> {
                   borderRadius: BorderRadius.circular(40),
                   color: Colors.blueAccent,
                 ),
-                child: Center(
-                  child: _buildMeaningDisplay(),
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Center(
+                    child: _buildMeaningDisplay(),
+                  ),
                 ),
               ),
             ),

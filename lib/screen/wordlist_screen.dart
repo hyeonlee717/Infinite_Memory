@@ -53,7 +53,12 @@ class _WordListScreenState extends State<WordListScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Center(child: Text('Add a new word')),
+          title: const Center(
+            child: Text(
+              'Add a new word',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -72,7 +77,10 @@ class _WordListScreenState extends State<WordListScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Colors.blueAccent),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -93,7 +101,10 @@ class _WordListScreenState extends State<WordListScreen> {
                   Navigator.of(context).pop();
                 }
               },
-              child: const Text('Add'),
+              child: const Text(
+                'Add',
+                style: TextStyle(color: Colors.redAccent),
+              ),
             ),
           ],
         );
