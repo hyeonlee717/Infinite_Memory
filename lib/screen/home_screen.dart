@@ -114,10 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu, size: 30),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: const Icon(Icons.menu, size: 30),
+        // ),
         backgroundColor: Colors.white,
         elevation: 2,
         shadowColor: Colors.black,
