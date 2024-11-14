@@ -236,8 +236,12 @@ class _DetailScreenState extends State<DetailScreen> {
           Expanded(
             flex: 10,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              padding: const EdgeInsets.only(
+                left: 20.0,
+                right: 20.0,
+                top: 10.0,
+                bottom: 10.0,
+              ),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -256,8 +260,11 @@ class _DetailScreenState extends State<DetailScreen> {
           Expanded(
             flex: 10,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              padding: const EdgeInsets.only(
+                left: 20.0,
+                right: 20.0,
+                top: 10.0,
+              ),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -274,7 +281,7 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
           Expanded(
-            flex: 6,
+            flex: 8,
             child: Row(
               children: [
                 Expanded(
@@ -293,12 +300,10 @@ class _DetailScreenState extends State<DetailScreen> {
                         child: const Center(
                           child: Padding(
                             padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              'Answer',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
+                            child: Icon(
+                              Icons.remove_red_eye_outlined,
+                              color: Colors.white,
+                              size: 40,
                             ),
                           ),
                         ),
@@ -322,12 +327,10 @@ class _DetailScreenState extends State<DetailScreen> {
                         child: const Center(
                           child: Padding(
                             padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              'Marked!',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
+                            child: Icon(
+                              Icons.check,
+                              color: Colors.white,
+                              size: 40,
                             ),
                           ),
                         ),
@@ -342,21 +345,26 @@ class _DetailScreenState extends State<DetailScreen> {
                       color: Colors.orange,
                       shape: const CircleBorder(),
                       child: InkWell(
+                        // Material 제거
                         onTap: () {
                           _loadRandomWord();
                         },
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
-                        borderRadius: BorderRadius.circular(100),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              'Next',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
+                        borderRadius: BorderRadius.circular(40),
+                        child: Container(
+                          // Container로 감싸기
+                          width: double.infinity, // 버튼 크기 조정
+                          height: double.infinity, // 버튼 크기 조정
+                          decoration: const BoxDecoration(
+                            color: Colors.orange,
+                            shape: BoxShape.circle, // 동그란 모양
+                          ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.arrow_right_alt_outlined,
+                              color: Colors.white,
+                              size: 40,
                             ),
                           ),
                         ),
