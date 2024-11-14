@@ -53,17 +53,17 @@ class _WordListScreenState extends State<WordListScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('단어 추가'),
+          title: const Center(child: Text('Add a new word')),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: englishController,
-                decoration: const InputDecoration(labelText: '영어 단어'),
+                decoration: const InputDecoration(labelText: 'Word'),
               ),
               TextField(
                 controller: meaningController,
-                decoration: const InputDecoration(labelText: '의미'),
+                decoration: const InputDecoration(labelText: 'Meaning'),
               ),
             ],
           ),
@@ -72,7 +72,7 @@ class _WordListScreenState extends State<WordListScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('취소'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -93,7 +93,7 @@ class _WordListScreenState extends State<WordListScreen> {
                   Navigator.of(context).pop();
                 }
               },
-              child: const Text('추가'),
+              child: const Text('Add'),
             ),
           ],
         );
@@ -134,14 +134,14 @@ class _WordListScreenState extends State<WordListScreen> {
                       value: 'add',
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text('추가'),
+                        child: Text('Add'),
                       ),
                     ),
                     const PopupMenuItem(
                       value: 'delete',
                       child: Align(
                         alignment: Alignment.center,
-                        child: Text('삭제'),
+                        child: Text('Delete'),
                       ),
                     ),
                   ],

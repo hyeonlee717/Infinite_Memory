@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: TextField(
                   controller: controller,
                   decoration: InputDecoration(
-                    labelText: '단어장 제목',
+                    labelText: 'Wordset Title',
                     counterText: '$byteCount/24',
                   ),
                   maxLength: 24,
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: const Text('취소'),
+                  child: const Text('Cancel'),
                 ),
                 TextButton(
                   onPressed: () {
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.of(context).pop();
                     }
                   },
-                  child: const Text('추가'),
+                  child: const Text('Add'),
                 ),
               ],
             );
