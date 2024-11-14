@@ -241,7 +241,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       },
                       child: const Center(
                         child: Text(
-                          '정답확인',
+                          'Answer',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -252,7 +252,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Material(
                     color: currentWord!.memorized ? Colors.grey : Colors.brown,
                     child: InkWell(
@@ -263,7 +263,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             },
                       child: Center(
                         child: Text(
-                          currentWord!.memorized ? '암기완료!!' : '암기완료',
+                          currentWord!.memorized ? 'Memorized!' : 'Memorized!',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -283,7 +283,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       },
                       child: const Center(
                         child: Text(
-                          '다음',
+                          'Next',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,

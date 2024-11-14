@@ -110,13 +110,16 @@ class _WordListScreenState extends State<WordListScreen> {
         elevation: 1,
         backgroundColor: Colors.white,
         shadowColor: Colors.black,
-        title: const Text('단어 목록'),
+        title: const Text('Word List'),
         centerTitle: true,
         actions: [
           if (_isDeletingMode) // 삭제 모드일 때만 삭제 버튼 표시
             TextButton(
               onPressed: _deleteSelectedWords,
-              child: const Text('삭제'),
+              child: const Text(
+                'Delete',
+                style: TextStyle(color: Colors.red),
+              ),
             )
           else // 삭제 모드가 아닐 때만 편집 아이콘 표시
             IconButton(
@@ -178,7 +181,7 @@ class _WordListScreenState extends State<WordListScreen> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        '번호',
+                        'No.',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -191,7 +194,7 @@ class _WordListScreenState extends State<WordListScreen> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        '영어 단어',
+                        'Word',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -204,7 +207,7 @@ class _WordListScreenState extends State<WordListScreen> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        '의미',
+                        'Meaning',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -217,7 +220,7 @@ class _WordListScreenState extends State<WordListScreen> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        '완료',
+                        'Mark',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
