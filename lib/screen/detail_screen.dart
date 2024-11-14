@@ -209,91 +209,133 @@ class _DetailScreenState extends State<DetailScreen> {
         children: [
           Expanded(
             flex: 3,
-            child: Container(
-              color: Colors.redAccent,
-              width: double.infinity,
-              child: Center(
-                child: _buildWordDisplay(),
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: Colors.redAccent,
+                ),
+                child: Center(
+                  child: _buildWordDisplay(),
+                ),
               ),
             ),
           ),
           Expanded(
             flex: 3,
-            child: Container(
-              color: Colors.blueAccent,
-              width: double.infinity,
-              child: Center(
-                child: _buildMeaningDisplay(),
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: Colors.blueAccent,
+                ),
+                child: Center(
+                  child: _buildMeaningDisplay(),
+                ),
               ),
             ),
           ),
           Expanded(
             flex: 2,
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Material(
-                    color: Colors.green,
-                    child: InkWell(
-                      onTap: () {
-                        _showMeaning();
-                      },
-                      child: const Center(
-                        child: Text(
-                          'Answer',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Material(
+                        color: Colors.green,
+                        shape: const CircleBorder(),
+                        child: InkWell(
+                          onTap: () {
+                            _showMeaning();
+                          },
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(100),
+                          child: const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(1.0),
+                              child: Text(
+                                'Answer',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Material(
-                    color: currentWord!.memorized ? Colors.grey : Colors.brown,
-                    child: InkWell(
-                      onTap: currentWord!.memorized
-                          ? null
-                          : () {
-                              _markAsMemorized();
-                            },
-                      child: Center(
-                        child: Text(
-                          currentWord!.memorized ? 'Memorized!' : 'Memorized!',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Material(
+                        color: Colors.brown,
+                        shape: const CircleBorder(),
+                        child: InkWell(
+                          onTap: () {
+                            _markAsMemorized();
+                          },
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(100),
+                          child: const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                'Marked!',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Material(
-                    color: Colors.orange,
-                    child: InkWell(
-                      onTap: () {
-                        _loadRandomWord();
-                      },
-                      child: const Center(
-                        child: Text(
-                          'Next',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Material(
+                        color: Colors.orange,
+                        shape: const CircleBorder(),
+                        child: InkWell(
+                          onTap: () {
+                            _loadRandomWord();
+                          },
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(100),
+                          child: const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                'Next',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
