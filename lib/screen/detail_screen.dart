@@ -286,7 +286,7 @@ class _DetailScreenState extends State<DetailScreen> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Material(
                       color: Colors.green,
                       shape: const CircleBorder(),
@@ -313,7 +313,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Material(
                       color: Colors.brown,
                       shape: const CircleBorder(),
@@ -340,7 +340,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(12.0),
                     child: Material(
                       color: Colors.orange,
                       shape: const CircleBorder(),
