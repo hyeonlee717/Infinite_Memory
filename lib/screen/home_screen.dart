@@ -211,7 +211,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               background: Container(
-                color: Colors.transparent,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(30),
+                ),
                 alignment: Alignment.centerLeft,
                 child: const Padding(
                   padding: EdgeInsets.only(left: 12),
@@ -238,48 +241,48 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 },
-                child: Container(
-                  decoration: BoxDecoration(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Container(
                     color: Colors.indigo[900],
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  width: double.infinity,
-                  height: 120,
-                  child: Stack(
-                    children: [
-                      Center(
-                        child: Text(
-                          wordSet.title,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
+                    width: double.infinity,
+                    height: 120,
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Text(
+                            wordSet.title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                            ),
                           ),
                         ),
-                      ),
-                      const Positioned(
-                        right: 0,
-                        bottom: 0,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.keyboard_double_arrow_right_outlined,
-                                color: Colors.white70,
-                                size: 10,
-                              ),
-                              Text(
-                                'Delete',
-                                style: TextStyle(
+                        const Positioned(
+                          right: 10,
+                          bottom: 0,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.keyboard_double_arrow_right_outlined,
                                   color: Colors.white70,
-                                  fontSize: 10,
+                                  size: 10,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  'Delete',
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
