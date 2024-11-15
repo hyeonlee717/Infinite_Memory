@@ -190,6 +190,27 @@ class _WordListScreenState extends State<WordListScreen> {
                               textAlign: TextAlign.center,
                             ),
                           ),
+                          content: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.check,
+                                color: Colors.green,
+                                size: 30,
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.arrow_right_alt_rounded,
+                                color: Colors.black,
+                              ),
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.close,
+                                color: Colors.red,
+                                size: 30,
+                              ),
+                            ],
+                          ),
                           actions: [
                             TextButton(
                               onPressed: () {
