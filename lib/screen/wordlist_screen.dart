@@ -198,12 +198,32 @@ class _WordListScreenState extends State<WordListScreen> {
                                 color: Colors.green,
                                 size: 30,
                               ),
+                              Icon(
+                                Icons.check,
+                                color: Colors.green,
+                                size: 30,
+                              ),
+                              Icon(
+                                Icons.check,
+                                color: Colors.green,
+                                size: 30,
+                              ),
                               SizedBox(width: 10),
                               Icon(
                                 Icons.arrow_right_alt_rounded,
                                 color: Colors.black,
                               ),
                               SizedBox(width: 10),
+                              Icon(
+                                Icons.close,
+                                color: Colors.red,
+                                size: 30,
+                              ),
+                              Icon(
+                                Icons.close,
+                                color: Colors.red,
+                                size: 30,
+                              ),
                               Icon(
                                 Icons.close,
                                 color: Colors.red,
