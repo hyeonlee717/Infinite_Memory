@@ -182,7 +182,7 @@ class _WordListScreenState extends State<WordListScreen> {
                               const EdgeInsets.only(top: 40, bottom: 20),
                           title: const Center(
                             child: Text(
-                              'Reset all memorized statuses?',
+                              'Reset \'ALL\' checked marks?',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

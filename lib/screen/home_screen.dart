@@ -156,78 +156,88 @@ class _HomeScreenState extends State<HomeScreen> {
           if (wordSet == null) {
             return const SizedBox.shrink();
           }
-          return Dismissible(
-            key: Key(wordSet.key.toString()),
-            direction: DismissDirection.startToEnd,
-            confirmDismiss: (direction) async {
-              return await showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    contentPadding: const EdgeInsets.all(40),
-                    content: const Text(
-                      'Delete this wordset?',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+          return Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Dismissible(
+              key: Key(wordSet.key.toString()),
+              direction: DismissDirection.startToEnd,
+              confirmDismiss: (direction) async {
+                return await showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      contentPadding: const EdgeInsets.all(40),
+                      content: const Text(
+                        'Delete this wordset?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(false); // 취소
-                        },
-                        child: const Text(
-                          'No',
-                          style: TextStyle(
-                            color: Colors.blueAccent,
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(false); // 취소
+                          },
+                          child: const Text(
+                            'No',
+                            style: TextStyle(
+                              color: Colors.blueAccent,
+                            ),
                           ),
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          wordSetBox.delete(wordSet.key);
-                          Navigator.of(context).pop(true); // 확인
-                        },
-                        child: const Text(
-                          'Yes',
-                          style: TextStyle(
-                            color: Colors.redAccent,
+                        TextButton(
+                          onPressed: () {
+                            wordSetBox.delete(wordSet.key);
+                            Navigator.of(context).pop(true); // 확인
+                          },
+                          child: const Text(
+                            'Yes',
+                            style: TextStyle(
+                              color: Colors.redAccent,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            background: Container(
-              color: Colors.redAccent,
-              alignment: Alignment.centerLeft,
-              child: const Padding(
-                padding: EdgeInsets.only(left: 12),
-                child: Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                  size: 30,
-                ),
-              ),
-            ),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailScreen(
-                      wordSet: wordSet,
-                      wordSetTitle: wordSet.title,
-                    ),
-                  ),
+                      ],
+                    );
+                  },
                 );
               },
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
+              onDismissed: (direction) {
+                // 항목이 삭제된 후 상태를 업데이트
+                setState(() {
+                  // 리스트에서 항목을 제거하는 로직 추가
+                });
+              },
+              background: Container(
+                color: Colors.transparent,
+                alignment: Alignment.centerLeft,
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.delete,
+                        color: Colors.redAccent,
+                        size: 35,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                        wordSet: wordSet,
+                        wordSetTitle: wordSet.title,
+                      ),
+                    ),
+                  );
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.indigo[900],
