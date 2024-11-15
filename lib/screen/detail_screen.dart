@@ -288,33 +288,6 @@ class _DetailScreenState extends State<DetailScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Material(
-                      color: Colors.green,
-                      shape: const CircleBorder(),
-                      child: InkWell(
-                        onTap: () {
-                          _showMeaning();
-                        },
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        borderRadius: BorderRadius.circular(100),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Icons.remove_red_eye_outlined,
-                              color: Colors.white,
-                              size: 40,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Material(
                       color: Colors.brown,
                       shape: const CircleBorder(),
                       child: InkWell(
@@ -329,6 +302,33 @@ class _DetailScreenState extends State<DetailScreen> {
                             padding: EdgeInsets.all(10.0),
                             child: Icon(
                               Icons.check,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Material(
+                      color: Colors.green,
+                      shape: const CircleBorder(),
+                      child: InkWell(
+                        onTap: () {
+                          _showMeaning();
+                        },
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        borderRadius: BorderRadius.circular(100),
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.remove_red_eye_outlined,
                               color: Colors.white,
                               size: 40,
                             ),
